@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="hiinsta",
-    version="0.1.0",
+    version="0.1.1",
     author="Your Name",
     author_email="your.email@example.com",
     description="A Python package for hiinsta",
@@ -33,6 +33,7 @@ setup(
     extras_require={
         "dev": [
             "pytest>=6.0",
+            "pytest-asyncio>=0.23",
             "black>=21.0",
             "flake8>=3.8.0",
             "mypy>=0.800",
