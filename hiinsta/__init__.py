@@ -2,7 +2,7 @@
 hiinsta - A Python package for hiinsta functionality.
 """
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __author__ = "Tomas Santana"
 __email__ = "tomas@cervant.chat"
 

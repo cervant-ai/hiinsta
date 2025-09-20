@@ -5,13 +5,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="hiinsta",
-    version="0.1.1",
-    author="Your Name",
-    author_email="your.email@example.com",
-    description="A Python package for hiinsta",
+    version="0.1.2",
+    author="Tomas Santana",
+    author_email="tomas@cervant.chat",
+    description="A simple Python wrapper for Instagram's messaging API",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/hiinsta",
+    url="https://github.com/cervant-ai/hiinsta",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",
