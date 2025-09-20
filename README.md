@@ -26,12 +26,13 @@ print(message_id)
 To install in development mode:
 
 ```bash
-git clone https://github.com/cervantai/hiinsta.git
+git clone https://github.com/cervant-ai/hiinsta.git
 cd hiinsta
 pip install -e .
 ```
 
 To install development dependencies:
+
 ```bash
 pip install -e ".[dev]"
 ```

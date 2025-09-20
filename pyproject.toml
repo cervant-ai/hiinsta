@@ -40,9 +40,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/cervantai/hiinsta"
-Repository = "https://github.com/cervantai/hiinsta.git"
-Issues = "https://github.com/cervantai/hiinsta/issues"
+Homepage = "https://github.com/cervant-ai/hiinsta"
+Repository = "https://github.com/cervant-ai/hiinsta.git"
+Issues = "https://github.com/cervant-ai/hiinsta/issues"
 
 [tool.black]
 line-length = 88
