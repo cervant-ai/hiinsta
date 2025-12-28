@@ -64,7 +64,7 @@ class Entry(BaseModel):
     time: int
     messaging: List[Messaging]
 
-class InstagramPayload(BaseModel):
+class Update(BaseModel):
     object: str
     entry: List[Entry]
 

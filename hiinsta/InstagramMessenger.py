@@ -1,6 +1,6 @@
 import httpx
 from typing import Optional, Any, Dict
-from hiinsta.types import InstagramPayload
+from hiinsta.types import Update, InstagramUser
 from hiinsta.types.exeptions import InstagramApiException
 
 INSTAGRAM_BASE_URL = "https://graph.instagram.com"
@@ -161,11 +161,47 @@ class InstagramMessenger:
 
         
         return message_id
+
+    async def get_user_data(self, user_id: str) -> InstagramUser:
+        """
+        Get user data from Instagram.
+        Args:
+            user_id (str): The Instagram user ID.
+        Returns:
+            InstagramUser: The user data.
+        """
+        url = f"{INSTAGRAM_BASE_URL}/{user_id}"
+        params = {
+            "fields": "id,username,name",
+            "access_token": self.access_token
+        }
+        
+        try:
+            async with httpx.AsyncClient(timeout=self.request_timeout) as client:
+                response = await client.get(url, params=params)
+        except httpx.RequestError as e:
+             raise InstagramApiException(
+                message="Network error while getting user data",
+                endpoint=url,
+                method="GET",
+                payload=None,
+                details=str(e),
+            ) from e
+
+        if response.status_code != 200:
+             raise InstagramApiException.from_httpx_response(
+                response,
+                endpoint=url,
+                method="GET",
+                payload=None,
+            )
+            
+        return InstagramUser(**response.json())
         
     @staticmethod
-    def process_payload(payload: dict) -> InstagramPayload:
+    def process_payload(payload: dict) -> Update:
         try:
-            return InstagramPayload(**payload)
+            return Update(**payload)
         except Exception as e:
             raise ValueError(f"Invalid payload: {e}")
         
