@@ -51,10 +51,12 @@ class Message(BaseModel):
     reply_to: Optional[ReplyTo] = None
     text: Optional[str] = None
 
+class User(BaseModel):
+    id: str
 
 class Messaging(BaseModel):
-    sender: Dict[str, str]
-    recipient: Dict[str, str]
+    sender: User
+    recipient: User
     timestamp: int
     message: Message
 
