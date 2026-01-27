@@ -73,7 +73,7 @@ class Update(BaseModel):
 class InstagramUser(BaseModel):
     id: str
     username: str
-    name: str
+    name: Optional[str] = None
     
 class SendResponse(TypedDict):
     recipient_id: str
