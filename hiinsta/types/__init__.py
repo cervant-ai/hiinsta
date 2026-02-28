@@ -23,11 +23,11 @@ class AdsContextData(BaseModel):
 
 
 class Referral(BaseModel):
-    ref: Optional[str]
-    ad_id: Optional[str]
-    source: Optional[str]
-    type: Optional[str]
-    ads_context_data: Optional[AdsContextData]
+    ref: Optional[str] = None
+    ad_id: Optional[str] = None
+    source: Optional[str] = None
+    type: Optional[str] = None
+    ads_context_data: Optional[AdsContextData] = None
 
 
 class ReplyToStory(BaseModel):
@@ -36,8 +36,8 @@ class ReplyToStory(BaseModel):
 
 
 class ReplyTo(BaseModel):
-    mid: Optional[str]
-    story: Optional[ReplyToStory]
+    mid: Optional[str] = None
+    story: Optional[ReplyToStory] = None
 
 
 class Message(BaseModel):
