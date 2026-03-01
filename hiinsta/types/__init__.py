@@ -1,10 +1,10 @@
 from pydantic import BaseModel, Field
 
-from typing import List, Optional, Dict, TypedDict
+from typing import List, Optional, TypedDict
 
 
 class AttachmentPayload(BaseModel):
-    url: str
+    url: Optional[str] = None
 
 
 class Attachment(BaseModel):
