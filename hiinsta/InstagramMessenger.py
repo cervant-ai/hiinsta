@@ -26,8 +26,12 @@ class InstagramMessenger:
             recipient_id (str): The recipient's Instagram user ID.
         Returns:
             str: The message ID of the sent message.
+        Raises:
+            InstagramApiException: For network errors, non-2xx responses, or malformed responses.
+            
+        Reference:
+        - https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/messaging-api#send-a-text-message
         """
-        url = f"{INSTAGRAM_BASE_URL}{INSTAGRAM_MESSAGES_ENDPOINT}"
         payload = {
             "recipient": {
                 "id": recipient_id
@@ -46,6 +50,11 @@ class InstagramMessenger:
             recipient_id (str): The recipient's Instagram user ID.
         Returns:
             str: The message ID of the sent message.
+        Raises:
+            InstagramApiException: For network errors, non-2xx responses, or malformed responses.
+        
+        Reference:
+        - https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/messaging-api#send-images
         """
         return await self._send_attachment("image", image_url, recipient_id)
     
@@ -57,6 +66,11 @@ class InstagramMessenger:
             recipient_id (str): The recipient's Instagram user ID.
         Returns:
             str: The message ID of the sent message.
+        Raises:
+            InstagramApiException: For network errors, non-2xx responses, or malformed responses.
+            
+        Reference:
+        - https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/messaging-api#send-audio--video-or-file
         """
         return await self._send_attachment("video", video_url, recipient_id)
     
@@ -68,9 +82,71 @@ class InstagramMessenger:
             recipient_id (str): The recipient's Instagram user ID.
         Returns:
             str: The message ID of the sent message.
+        Raises:
+            InstagramApiException: For network errors, non-2xx responses, or malformed responses.
+        
+        Reference:
+        - https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/messaging-api#send-audio--video-or-file
         """
         return await self._send_attachment("audio", audio_url, recipient_id)
+    
+    async def send_file(self, file_url: str, recipient_id: str):
+        """
+        Send a file to a user.
+        Args:
+            file_url (str): The URL of the file to send.
+            recipient_id (str): The recipient's Instagram user ID.
+        Returns:
+            str: The message ID of the sent message.   
+        Raises:
+            InstagramApiException: For network errors, non-2xx responses, or malformed responses.
+            
+        Reference:
+        - https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/messaging-api#send-audio--video-or-file
+        """
+        return await self._send_attachment("file", file_url, recipient_id)
+    
+    async def send_typing_indicator(self, recipient_id: str):
+        """
+        Send a typing indicator to a user.
+        Args:
+            recipient_id (str): The recipient's Instagram user ID.
+        Returns:
+            str: The message ID of the sent message.
         
+        Raises:
+            InstagramApiException: For network errors, non-2xx responses, or malformed responses.
+            
+        Reference:
+        - https://developers.facebook.com/docs/messenger-platform/send-messages/sender-actions#typing-indicator
+        """
+        payload = {
+            "recipient": {
+                "id": recipient_id
+            },
+            "sender_action": "typing_on"
+        }
+        return await self._send_message_payload(payload)
+    
+    async def send_read_receipt(self, recipient_id: str):
+        """
+        Send a read receipt to a user.
+        Args:
+            recipient_id (str): The recipient's Instagram user ID.
+        Returns:
+            str: The message ID of the sent message.
+            
+        Reference:
+        - https://developers.facebook.com/docs/messenger-platform/send-messages/sender-actions#mark-messages-as-seen
+        """
+        payload = {
+            "recipient": {
+                "id": recipient_id
+            },
+            "sender_action": "mark_seen"
+        }
+        return await self._send_message_payload(payload)
+    
     async def _send_attachment(self, attachment_type: str, attachment_url: str, recipient_id: str):
         """
         Send an attachment (image, video, audio, file) to a user.
