@@ -67,6 +67,12 @@ class Entry(BaseModel):
     messaging: List[Messaging]
 
 class Update(BaseModel):
+    """
+    Instagram _message_ webhook update object.
+    
+    Reference:
+    - https://developers.facebook.com/docs/instagram-platform/webhooks/examples/#message
+    """
     object: str
     entry: List[Entry]
 
