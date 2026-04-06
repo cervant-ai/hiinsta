@@ -18,8 +18,8 @@ class QuickReply(BaseModel):
 
 class AdsContextData(BaseModel):
     ad_title: str
-    photo_url: str
-    video_url: str
+    photo_url: Optional[str] = None
+    video_url: Optional[str] = None
 
 
 class Referral(BaseModel):
